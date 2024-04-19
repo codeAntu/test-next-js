@@ -1,7 +1,6 @@
-import { Schema } from "mongoose";
 import mongoose from "mongoose";
 
-const userSchema = new Schema({
+const userSchema = new mongoose.Schema({
   name: {
     type: String,
     required: [true, "Name is required"],
@@ -9,15 +8,14 @@ const userSchema = new Schema({
   },
   email: {
     type: String,
-    required:   [true, "Email is required"],
+    required: [true, "Email is required"],
     unique: true,
-
   },
   password: {
     type: String,
-    required: [true, "Password is required"]
+    required: [true, "Password is required"],
   },
-  isVerified:{
+  isVerified: {
     type: Boolean,
     default: false,
   },
@@ -31,7 +29,6 @@ const userSchema = new Schema({
   },
   forgotPasswordExpires: {
     type: Date,
-    default: Date.now(),
   },
   verificationToken: {
     type: String,
@@ -39,7 +36,6 @@ const userSchema = new Schema({
   },
   verificationTokenExpires: {
     type: Date,
-    default: Date.now(),
   },
   createdAt: {
     type: Date,
@@ -49,7 +45,6 @@ const userSchema = new Schema({
     type: Date,
     default: Date.now(),
   },
-
 });
 
 const User = mongoose.models.User || mongoose.model("User", userSchema);
