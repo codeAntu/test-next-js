@@ -8,20 +8,19 @@ import toast from "react-hot-toast";
 export default function LogInPage() {
   const [user, setUser] = useState({ email: "", password: "" });
   const router = useRouter();
-  const [loading , setLoading] = useState(false);
-   async function onLogIn() {
-    try{
+  const [loading, setLoading] = useState(false);
+  async function onLogIn() {
+    try {
       setLoading(true);
       console.log("user", user);
       console.log("trying to log in");
       const response = await axios.post("/api/users/login", user);
       console.log("response", response);
       toast.success("User logged in successfully");
-      router.push("/profile");
-    }catch(error :any){
+    } catch (error: any) {
       console.log("logIn failed");
       console.log("error", error);
-    }finally{
+    } finally {
       setLoading(false);
     }
   }
